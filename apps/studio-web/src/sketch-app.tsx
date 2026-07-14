@@ -166,8 +166,8 @@ export function SketchApp() {
   };
 
   const openApp = async (id: string) => {
-    if (turnStatus === "running" || id === activeAppId) return;
-    setRequestError(null);
+    if (id === activeAppId) return;
+    setRequestError(null); setTurnStatus("idle"); setPreviewStatus("starting");
     try {
       const projection = await studioApi.openApp(id);
       projectProjection(projection); setActiveAppId(id); setScreen("studio"); setActiveTab("preview");

@@ -191,8 +191,8 @@ app.post("/api/projects", async (request, reply) => {
 app.post("/api/apps/:id/open", async (request, reply) => {
   const id = typeof (request.params as { id?: unknown }).id === "string" ? (request.params as { id: string }).id : "";
   if (!id) return reply.code(400).send({ error: "An app id is required." });
-  if (codex.running) return reply.code(409).send({ error: "Wait for the current build to finish before switching apps." });
   try {
+    await codex.stop();
     await preview.stop();
     const localApp = await workspace.openApp(id);
     session = {

@@ -62,8 +62,11 @@ export class CodexRunner {
   }
 
   async stop() {
-    if (!this.active) return;
+    const active = this.active;
+    if (!active) return;
+    this.active = null;
     this.controller?.abort();
+    active.callbacks.cancelled();
   }
 
   private project(event: ThreadEvent, callbacks: RunnerCallbacks, setFinal: (message: string) => void) {
