@@ -1,0 +1,14 @@
+{
+  "name": "sketch",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "dev": "concurrently -n web,server -c cyan,magenta \"pnpm --filter @sketch/studio-web dev\" \"pnpm --filter @sketch/studio-server dev\"",
+    "build": "pnpm --filter @sketch/contracts build && pnpm --filter @sketch/preview-inspector build && pnpm --filter @sketch/studio-server build && pnpm --filter @sketch/studio-web build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  }
+}
